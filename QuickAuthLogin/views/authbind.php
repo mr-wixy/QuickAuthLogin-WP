@@ -1,4 +1,5 @@
 <?php
+
 require_once __TYPECHO_ROOT_DIR__.__TYPECHO_ADMIN_DIR__.'common.php';
 
 
@@ -23,7 +24,7 @@ if($group != 'administrator' && !$option->users){ //非管理员且[非管理员
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>QuickAuthLogin - 扫描登录授权绑定</title>
+        <title>QuickAuthLogin - 扫码登录授权绑定</title>
         <meta name="robots" content="noindex, nofollow">
         <link rel="stylesheet" href="<?=__TYPECHO_ADMIN_DIR__?>css/normalize.css?v=17.10.30">
 		<link rel="stylesheet" href="<?=__TYPECHO_ADMIN_DIR__?>css/grid.css?v=17.10.30">

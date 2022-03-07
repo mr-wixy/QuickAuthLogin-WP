@@ -26,8 +26,11 @@ class QuickAuthLogin_Plugin implements Typecho_Plugin_Interface {
 		$info = self::updateDb();
 	
 		Typecho_Plugin::factory('admin/menu.php')-> navBar = array(__class__, 'render');
-		Typecho_Plugin::factory('admin/header.php')-> header = array(__class__,'login');
 		Typecho_Plugin::factory('Widget_User')-> loginSucceed = array(__class__,'afterlogin');
+        Typecho_Plugin::factory('admin/footer.php')->end = array(__class__, 'render_footer');
+        
+        
+        Helper::addPanel(1, 'QuickAuthLogin/views/authbind.php', '微信账号绑定', '微信账号绑定', 'subscriber');
 		
 		Helper::addRoute('bind',__TYPECHO_ADMIN_DIR__.'QuickAuthLogin/bind','QuickAuthLogin_Action','bind');
 		Helper::addRoute('login',__TYPECHO_ADMIN_DIR__.'QuickAuthLogin/login','QuickAuthLogin_Action','login');
@@ -77,6 +80,10 @@ class QuickAuthLogin_Plugin implements Typecho_Plugin_Interface {
         ALTER TABLE `{$prefix}users` DROP COLUMN `qa_avatar`;
         ";
         $db->query($sql);
+        
+        
+        Helper::removePanel(1, 'QuickAuthLogin/views/authbind.php');
+    
     
         return "数据表删除字段成功！";
     }
@@ -168,6 +175,32 @@ class QuickAuthLogin_Plugin implements Typecho_Plugin_Interface {
 		}else{
 			return $header;
 		}
+	}
+	
+	public static function render_footer(){
+		$options = self::getoptions();
+        if (!Typecho_Widget::widget('Widget_User')->hasLogin()){
+            
+            
+    	    echo '<script>
+    	    $(".submit").append("<button type=\\"button\\" style=\\"background: #2a0; margin-top:5px; color:white;\\" class=\\"btn btn-l w-100\\" onClick=\\"QuickAuthLogin()\\">微信登陆</button>"
+            );';
+            
+            if(empty($options->qauth_app_key))
+            {
+                echo 'function QuickAuthLogin(){
+        	        alert("使用微信登陆需要先配置QuickAuth插件的AppKey和UserSecret");
+        	    }';
+            }
+            else{
+            echo 'function QuickAuthLogin(){
+    	        var iTop = (window.screen.availHeight - 30 - 600) / 2; 
+                var iLeft = (window.screen.availWidth - 10 - 500) / 2; 
+    	        window.open ("'.$options->qauth_api.'/qrconnect?appkey='.$options->qauth_app_key.'&state=login&popup=true","QuickAuth登录","width=500,height=600,top="+iTop+",left="+iLeft); 
+    	    }';
+            }
+    	    echo '</script>';
+        }
 	}
 	
 	public static function render(){
