@@ -2,13 +2,24 @@
 
 基于[QuickAuth](https://qauth.cn)扫码登录平台开发的Typecho微信扫码登录插件
 
+#### 更新记录
+
+##### 2022/03/07 v0.9.1
+
+1. 取消替换登录界面功能，改为在源登录界面注入微信登录按钮
+2. 删除多余配置功能，简化配置
+
 ## 起始
 
 本插件是基于 QuickAuth 开发的 插件，使用前需要进入[QuickAuth平台](https://qauth.cn)注册配置自己的应用
 
 如需修改插件或开发自己的接入项目，请参考 [QuickAuth接入文档](https://qauth.cn/doc/index.html)
 
-插件地址：[https://github.com/mr-wixy/QuickAuthLogin](https://github.com/mr-wixy/QuickAuthLogin)
+插件地址：
+
+Gitee: [https://gitee.com/wixy/QuickAuthLogin](https://gitee.com/wixy/QuickAuthLogin)
+
+Github: [https://github.com/mr-wixy/QuickAuthLogin](https://github.com/mr-wixy/QuickAuthLogin)
 
 (请勿与其它同类插件同时启用，以免互相影响)
 
@@ -40,22 +51,20 @@
 
 第 8 步：进入博客插件后台配置AppKey和UserSecret；
 
-![](https://cdn.wixy.cn/blog-picture/20220127161859.png)
+![](https://cdn.wixy.cn/blog-picture/20220307165220.png)
 
 <br/>
 
 ## 重要说明
 
 1. QuickAuthApi 默认配置，正常情况下无需修改（除非QuickAuth网站接口地址改了）
-2. 账户密码登录默认开启，如需关闭，请确保账号已经绑定微信，否则将无法正常登录后台；如果出现这种情况，请重装插件解决！
-3. 允许未绑定微信账号扫码登录开启后，未绑定的微信扫码则会自动注册账号
-4. 非管理员启用选项开启后会在导航栏增加微信账号绑定入口
+2. 允许未绑定微信账号扫码登录开启后，未绑定的微信扫码则会自动注册账号
 
 ## 与我联系
 
 作者：wixy
 
-如果有任何意见或发现任何BUG请联系我
+如果有任何意见或发现任何BUG请提issue或直接联系我
 
 邮箱：[wixy@qq.com](mailto:wixy@qq.com)
 

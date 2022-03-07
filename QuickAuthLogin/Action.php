@@ -17,9 +17,7 @@ class QuickAuthLogin_Action extends Typecho_Widget
         if ($user->haslogin()) {
             // 获取当前用户名
             $name = $user->__get('name');
-
             $options = QuickAuthLogin_Plugin::getoptions();
-          
             $db   = Typecho_Db::get();
             $db->query($db->update('table.users')->rows(['qa_openid' => null, 'qa_nickname' => null, 'qa_avatar' => null])->where('name = ?', $name));
           
@@ -31,13 +29,6 @@ class QuickAuthLogin_Action extends Typecho_Widget
             $ret['msg'] = 'what are you doing?';
         }
         $res->throwJson($ret);
-    }
-
-    /* 二维码授权绑定 */
-    public function authbind()
-    {
-        $path = QuickAuthLogin_Plugin::PLUGIN_PATH . 'views/authbind.php';
-        require_once $path;
     }
 
     /* 微信Callback跳转登录逻辑 */
@@ -72,12 +63,12 @@ class QuickAuthLogin_Action extends Typecho_Widget
                 $user = $db->fetchRow($db->select()->from('table.users')->where( 'qa_openid' . ' = ?', $openId[1])->limit(1));
                 if($user){
                     $this->widget('Widget_Notice')->set('此微信账号已被绑定！', 'error');
-                    $res->redirect(QuickAuthLogin_Plugin::tourl('QuickAuthLogin/auth-bind'));
+                    $res->redirect("/admin/extending.php?panel=QuickAuthLogin/views/authbind.php");
                 }
                 //更新基础信息
                 $db->query($db->update('table.users')->rows(['qa_openid' => $openId[1], 'qa_nickname' => $nickName[1], 'qa_avatar' => $avatarUrl[1]])->where('name = ?', $name));
                 $this->widget('Widget_Notice')->set(_t('用户 <strong>%s</strong> 成功绑定微信账号 <strong>%s</strong>', $name, $nickName[1]), 'success');
-                $res->redirect(QuickAuthLogin_Plugin::tourl('QuickAuthLogin/auth-bind'));
+                $res->redirect("/admin/extending.php?panel=QuickAuthLogin/views/authbind.php");
             }
             else{
                 $ret['login']['msg']  = 'Fail';
