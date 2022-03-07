@@ -57,4 +57,6 @@
 
 如果有任何意见或发现任何BUG请联系我
 
+邮箱：[wixy@qq.com](mailto:wixy@qq.com)
+
 博客：[https://blog.wixy.cn/](https://blog.wixy.cn/)
