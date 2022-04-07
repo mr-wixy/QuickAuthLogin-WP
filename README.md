@@ -4,15 +4,25 @@
 
 基于[QuickAuth](https://qauth.cn)扫码登录平台开发的WordPress微信扫码登录插件
 
+
+### 更新记录
+
+#### 2022/03/31 v0.9.2
+
+1. 支持QuickAuth平台测试功能，可测试插件是否安装成功
+2. 更新接入教程
+
 ## 起始
 
 本插件是基于 QuickAuth 开发的 插件，使用前需要进入[QuickAuth平台](https://qauth.cn)注册配置自己的应用
 
 如需修改插件或开发自己的接入项目，请参考 [QuickAuth接入文档](https://qauth.cn/doc/index.html)
 
-插件地址：[https://github.com/mr-wixy/QuickAuthLogin-WP](https://github.com/mr-wixy/QuickAuthLogin-WP)
+插件地址：
 
-下载地址：[QuickAuthLogin.zip][1]
+Gitee: [https://gitee.com/wixy/QuickAuthLogin-WP](https://gitee.com/wixy/QuickAuthLogin-WP)
+
+Github: [https://github.com/mr-wixy/QuickAuthLogin-WP](https://github.com/mr-wixy/QuickAuthLogin-WP)
 
 (请勿与其它同类插件同时启用，以免互相影响)
 
@@ -24,25 +34,21 @@
 
 第 3 步：登录QuickAuth网站创建接入应用；
 
-![](https://cdn.wixy.cn/blog-picture/blog-picture20220127160420.png)
+![创建接入应用](https://cdn.wixy.cn/blog-picture/20220407155243.png)
 
-第 4 步：填写应用的基本信息（注意：此时可以获取到AppKey，回调地址请填写自己博客的域名+/index.php/wp-json/wp/v2/qauth_login 此处必须为https）
+第 4 步：发布应用；
 
-![](https://cdn.wixy.cn/blog-picture/20220207150311.png)
+![发布应用](https://cdn.wixy.cn/blog-picture/20220407133237.png)
 
-第 5 步：发布应用；
-
-![发布应用](https://cdn.wixy.cn/blog-picture/blog-picture20220127161055.png)
-
-第 6 步：[获取](https://qauth.cn/config/secret)UserSecretKey；
+第 5 步：[获取](https://qauth.cn/config/secret)UserSecretKey；
 
 ![](https://cdn.wixy.cn/blog-picture/blog-picture20220127161157.png)
 
-第 7 步：进入博客插件后台配置AppKey和UserSecret；
+第 6 步：进入博客插件后台配置AppKey和UserSecret；
 
 ![](https://cdn.wixy.cn/blog-picture/20220207145540.png)
 
-第 8 步：进入博客后台绑定管理员微信账号；
+第 7 步：进入博客后台绑定管理员微信账号；
 
 ![](https://cdn.wixy.cn/blog-picture/20220207151735.png)
 

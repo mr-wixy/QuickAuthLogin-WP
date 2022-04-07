@@ -1,12 +1,14 @@
 <?php
 /*
 Plugin Name: QuickAuthLogin
-Plugin URI: https://github.com/mr-wixy/QuickAuthLogin-WP
+Plugin URI: https://gitee.com/wixy/QuickAuthLogin-WP
 Description: QuickAuth微信扫码登陆插件
-Version: 0.9.0
+Version: 0.9.2
 Author: wixy
 Author URI: https://blog.wixy.cn/
 */
+
+const PLUGIN_VERSION  = '0.9.2';
 
 //自定义登录按钮
 function custom_login_button() {
@@ -48,7 +50,23 @@ add_action( 'rest_api_init', function () {
         'methods' => 'GET',
         'callback' => 'qauth_login',
     ) );
+    register_rest_route( 'wp/v2', '/qauth_login/ping', array(
+        'methods' => 'GET',
+        'callback' => 'ping',
+    ) );
 } );
+
+function ping(){
+    $data = [
+        "code" => 0,
+        "msg" => "pong",
+        "data" => [
+            "name" => "QuickAuthLogin For WordPress",
+    	    "version" => PLUGIN_VERSION
+            ]
+    ];
+    echo json_encode($data);
+}
 
 function qauth_login() {
     $code = $_GET['code'];
@@ -265,8 +283,7 @@ function qauth_options_page_html() {
                 <li><label class="typecho-label">使用说明：</label>
             		<ol>
             		<li><p class="description">登陆 <a target="_blank" href="https://qauth.cn">QuickAuth</a>网站</p></li>
-            		<li><p class="description"><a target="_blank" href="https://qauth.cn/app">创建应用</a> 并填写相关信息（回调地址请填写https://博客域名/index.php/wp-json/wp/v2/qauth_login）</p></li>
-            		<li><p class="description"><a target="_blank" href="https://qauth.cn/app">发布</a> 应用</p></li>
+            		<li><p class="description"><a target="_blank" href="https://qauth.cn/app">创建应用</a> 填写相关信息 保存并发布</p></li>
             		<li><p class="description">在此页面中配置 AppKey和UserSecret</p></li>
             		</ol>
     		    </li>
