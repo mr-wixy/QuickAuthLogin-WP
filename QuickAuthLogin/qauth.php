@@ -43,6 +43,7 @@ function custom_html() {
     }
 }
 add_action('login_footer', 'custom_html');
+add_action('wp_footer', 'custom_html');
 
 //回调接口定义
 add_action( 'rest_api_init', function () {
