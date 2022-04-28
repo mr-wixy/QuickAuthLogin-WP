@@ -3,12 +3,12 @@
 Plugin Name: QuickAuthLogin
 Plugin URI: https://gitee.com/wixy/QuickAuthLogin-WP
 Description: QuickAuth微信扫码登陆插件
-Version: 0.9.2
+Version: 0.9.3
 Author: wixy
 Author URI: https://blog.wixy.cn/
 */
 
-const PLUGIN_VERSION  = '0.9.2';
+const PLUGIN_VERSION  = '0.9.3';
 
 //自定义登录按钮
 function custom_login_button() {
